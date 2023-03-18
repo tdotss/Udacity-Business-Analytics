@@ -1,0 +1,31 @@
+SELECT c.CustomerId, c.LastName, COUNT(*) Quantity
+FROM customer c
+JOIN InvoiceLine i
+ON c.CustomerId = i.InvoiceId
+GROUP BY c.CustomerId, c.LastName
+HAVING COUNT(*) > 5
+ORDER BY Quantity;
+
+SELECT Artist.name, count(Artist.artistid) "Number of Albums"
+FROM Album
+JOIN Artist
+ON album.artistid = artist.ArtistId
+GROUP BY artist.Name
+ORDER BY "Number of Albums" DESC
+LIMIT 5;
+
+SELECT c.CustomerId AS customer_ID, c.firstname, sum(i.total) as total
+FROM Invoice i
+JOIN customer c
+ON i.customerid = c.CustomerId
+GROUP BY customer_ID
+ORDER BY total DESC
+LIMIT 5;
+
+SELECT m.Name, COUNT(t.mediatypeid) as total_file_types
+FROM track t
+JOIN mediatype m
+ON t.mediatypeid = m.MediaTypeId
+GROUP BY m.Name
+ORDER BY total_file_types DESC
+LIMIT 5;
